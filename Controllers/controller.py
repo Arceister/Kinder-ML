@@ -1,3 +1,4 @@
+from io import BytesIO
 from PIL import Image, ImageOps
 import numpy as np
 import tensorflow as tf
@@ -5,10 +6,10 @@ import tensorflow as tf
 def api_hit_response():
   return {"Message": "API Accessed!"}
 
-def predict_image():
+def predict_image(image_to_predict):
   model = tf.keras.models.load_model('Models/keras_model.h5')
   data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
-  image = Image.open('Image/apel_example.jpg')
+  image = Image.open(BytesIO(image_to_predict))
   size = (224, 224)
   image = ImageOps.fit(image, size, Image.ANTIALIAS)
 
