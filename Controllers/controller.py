@@ -1,14 +1,14 @@
-from keras.models import load_model
 from PIL import Image, ImageOps
 import numpy as np
+import tensorflow as tf
 
 def api_hit_response():
   return {"Message": "API Accessed!"}
 
 def predict_image():
-  model = load_model('../Models/keras_model.h5')
+  model = tf.keras.models.load_model('Models/keras_model.h5')
   data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
-  image = Image.open('../Image/apel_example.jpg')
+  image = Image.open('Image/apel_example.jpg')
   size = (224, 224)
   image = ImageOps.fit(image, size, Image.ANTIALIAS)
 
@@ -17,4 +17,15 @@ def predict_image():
   data[0] = normalized_image_array
 
   prediction = model.predict(data)
-  return {"Prediction": prediction}
+  pr = np.argmax(prediction, axis=1)
+
+  labels = {
+    0: "Apple",
+    1: "Orange",
+    2: "Banana",
+    3: "Rotten Apple",
+    4: "Rotten Orange",
+    5: "Rotten Banana"
+  }
+
+  return {"Hasil": labels[int(pr[0])]}
