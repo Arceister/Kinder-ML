@@ -21,9 +21,42 @@ def predict_image(image_to_predict):
   pr = np.argmax(prediction, axis=1)
 
   labels = {
-    0: "Apple",
-    1: "Orange",
-    2: "Banana",
+    0: {
+      "Hasil": "Apple",
+      "Kandungan": {
+        "Air": 81.2,
+        "Protein": 0.3,
+        "Karbohidrat": 14.9,
+        "Serat": 2.6,
+        "Lain-lain": 1
+      },
+      "Tidak": ["Lambung", "Wasir", "Ambeien"],
+      "Manfaat": ["Jantung", "Diabetes", "Obesitas", "Pencernaan"]
+    },
+    1: {
+      "Hasil": "Orange",
+      "Kandungan": {
+        "Air": 84.5,
+        "Protein": 0.9,
+        "Karbohidrat": 11.2,
+        "Serat": 2.4,
+        "Lain-lain": 1
+      },
+      "Tidak": ["Lambung", "Wasir", "Ambeien"],
+      "Manfaat": ["Janin", "Kulit", "Diabetes", "Pencernaan"]
+    },
+    2: {
+      "Hasil": "Banana",
+      "Kandungan": {
+        "Air": 67.7,
+        "Protein": 1.3,
+        "Karbohidrat": 27,
+        "Serat": 3,
+        "Lain-lain": 1
+      },
+      "Tidak": ["Asma", "Sembelit", "Diabetes"],
+      "Manfaat": ["Janin", "Kulit", "Diabetes", "Pencernaan"]
+    },
     3: "Rotten Apple",
     4: "Rotten Orange",
     5: "Rotten Banana"
